@@ -55,14 +55,14 @@ def baseline_model(optimizer='adam'):
 	return model
 
 ############ k-fold validation
-estimator = KerasClassifier(build_fn=baseline_model, nb_epoch=10, batch_size=1, verbose=1)
-kfold = KFold(n_splits=10, shuffle=True, random_state=seed)
+# estimator = KerasClassifier(build_fn=baseline_model, nb_epoch=10, batch_size=1, verbose=1)
+# kfold = KFold(n_splits=10, shuffle=True, random_state=seed)
 # kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=seed)
 
-result = cross_val_score(estimator, X, y, cv=kfold)
+# result = cross_val_score(estimator, X, y, cv=kfold)
 # numpy.savez('result_kfold.npz', result=result)
 # print(result)
-print("Accuracy: %.2f%% (%.2f%%)" % (result.mean()*100, result.std()*100))
+# print("Accuracy: %.2f%% (%.2f%%)" % (result.mean()*100, result.std()*100))
 
 ############### split valdation
 # build model
@@ -72,16 +72,16 @@ print("Accuracy: %.2f%% (%.2f%%)" % (result.mean()*100, result.std()*100))
 
 
 # #### multiple optimizer
-# optimizer = ['adam','rmsprop','sgd','adagrad','adadelta','adamax','nadam']
-# model_acc = []
-# model_loss = []
-# for op in optimizer:
-# 	model = baseline_model(op)
-# 	history = model.fit(X, y, nb_epoch=10, batch_size=1, verbose=1)
-# 	model_acc.append(history.history['acc'])
-# 	model_loss.append(history.history['loss'])
-# 
-# numpy.savez('result_optimizer.npz', model_acc=model_acc, model_loss=model_loss, optimizer=optimizer)
+optimizer = ['adam','rmsprop','sgd','adagrad','adadelta','adamax','nadam']
+model_acc = []
+model_loss = []
+for op in optimizer:
+	model = baseline_model(op)
+	history = model.fit(X, y, nb_epoch=10, batch_size=1, verbose=1)
+	model_acc.append(history.history['acc'])
+	model_loss.append(history.history['loss'])
+
+numpy.savez('result_optimizer2.npz', model_acc=model_acc, model_loss=model_loss, optimizer=optimizer)
 
 
 

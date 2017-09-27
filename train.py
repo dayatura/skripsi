@@ -52,9 +52,8 @@ def baseline_model(optimizer='adam'):
 
 ############ k-fold validation
 estimator = KerasClassifier(build_fn=baseline_model, nb_epoch=10, batch_size=1, verbose=1)
-# kfold = KFold(n_splits=10, shuffle=True, random_state=seed)
-kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=seed)
-
+kfold = KFold(n_splits=10, shuffle=True, random_state=seed)
+# kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=seedt)
 result = cross_val_score(estimator, X, y, cv=kfold)
 # numpy.savez('result_kfold.npz', result=result)
 # print(result)
