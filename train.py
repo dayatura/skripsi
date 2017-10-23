@@ -13,6 +13,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import KFold
 from sklearn.pipeline import Pipeline
 
+import time
 
 # fix random seed for reproducibility
 seed = 7
@@ -72,16 +73,18 @@ model_acc = []
 model_loss = []
 for op in optimizer:
 	model = baseline_model(op)
+	start_time = time.time()
 	history = model.fit(X, y, nb_epoch=10, batch_size=1, verbose=1)
+	elapsed_time = time.time() - start_time
 	model_acc.append(history.history['acc'])
 	model_loss.append(history.history['loss'])
 	#serialize model to JSON
 	model_json = model.to_json()
-	model_name = "model_" + op + ".json"
+	model_name = "model_" + op + elapsed_time + ".json"
 	with open(model_name) as json_file:
 		json_file.write(model_json)
 	# serialize weights to HDF5
-	weights_name = "weights_" + op + ".h5"
+	weights_name = "weights_" + op + elapsed_time +  ".h5"
 	model.save_weights(weights_name)
 	print("Saved model" + weights_name + " to disk")
 
