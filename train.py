@@ -80,11 +80,11 @@ for op in optimizer:
 	model_loss.append(history.history['loss'])
 	#serialize model to JSON
 	model_json = model.to_json()
-	model_name = "model_" + op + elapsed_time + ".json"
+	model_name = "model_" + op + "_" + str(elapsed_time) + ".json"
 	with open(model_name) as json_file:
 		json_file.write(model_json)
 	# serialize weights to HDF5
-	weights_name = "weights_" + op + elapsed_time +  ".h5"
+	weights_name = "weights_" + op + "_" +str(elapsed_time) +  ".h5"
 	model.save_weights(weights_name)
 	print("Saved model" + weights_name + " to disk")
 
