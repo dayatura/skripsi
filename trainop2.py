@@ -79,7 +79,7 @@ for op in optimizer:
 		model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=['accuracy'])
 		return model
 
-	estimator = KerasClassifier(build_fn=baseline_model, nb_epoch=10, batch_size=1, verbose=0)
+	estimator = KerasClassifier(build_fn=baseline_model, nb_epoch=10, batch_size=1, verbose=1)
 	kfold = KFold(n_splits=10, shuffle=True, random_state=seed)
 	# kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=seedt)
 	start_time = time.time()

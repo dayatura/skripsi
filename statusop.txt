@@ -1,0 +1,7 @@
+Accuracy: 94.75% (2.04%)
+Accuracy: 92.50% (3.44%)
+Accuracy: 90.50% (5.15%)
+Accuracy: 91.08% (3.33%)
+Accuracy: 82.33% (5.13%)
+Accuracy: 91.83% (2.03%)
+Accuracy: 95.83% (1.44%)
